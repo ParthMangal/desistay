@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { Loader2 } from 'lucide-react';
 import { HelmetProvider } from 'react-helmet-async';
 import { api } from './services/api';
@@ -35,7 +35,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import Navbar from './components/Navbar';
 
-function ProtectedRoute({ children, roles }: { children: JSX.Element, roles?: string[] }) {
+function ProtectedRoute({ children, roles }: { children: React.ReactNode, roles?: string[] }) {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -107,8 +107,8 @@ export default function App() {
                 } />
               </Routes>
             </main>
-            <footer className="bg-gray-900 text-white py-8 px-4 text-center">
-              <p>&copy; 2026 StayEase Marketplace. All rights reserved.</p>
+            <footer className="bg-brand-green text-white py-8 px-4 text-center font-sans">
+              <p>&copy; 2026 FemmeGo. All rights reserved.</p>
             </footer>
           </div>
         </BrowserRouter>

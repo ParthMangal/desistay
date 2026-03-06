@@ -36,26 +36,26 @@ export default function SearchPage() {
     : properties.filter(p => p.property_type === filterType);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-brand-light/20 min-h-screen font-sans">
       <Helmet>
-        <title>Search Safe Rentals | DesiStays</title>
+        <title>Search Safe Rentals | FemmeGo</title>
       </Helmet>
 
       {/* Search Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-20">
+      <div className="bg-white shadow-sm sticky top-0 z-20 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <form onSubmit={handleSearch} className="flex gap-2">
-            <div className="flex-grow flex items-center px-4 py-2 bg-gray-100 rounded-lg border border-gray-200 focus-within:border-pink-500 focus-within:ring-1 focus-within:ring-pink-500">
+            <div className="flex-grow flex items-center px-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus-within:border-brand-rust focus-within:ring-1 focus-within:ring-brand-rust transition-all">
               <Search className="text-gray-400 mr-2" size={20} />
               <input
                 type="text"
                 placeholder="Search by locality (e.g. Koramangala)"
-                className="bg-transparent w-full focus:outline-none text-gray-900"
+                className="bg-transparent w-full focus:outline-none text-gray-900 placeholder-gray-400"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <button type="submit" className="bg-pink-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-pink-700 transition">
+            <button type="submit" className="bg-brand-green text-white px-6 py-2 rounded-lg font-medium hover:bg-brand-green/90 transition shadow-sm">
               Search
             </button>
           </form>
@@ -68,8 +68,8 @@ export default function SearchPage() {
                 onClick={() => setFilterType(type)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition border ${
                   filterType === type 
-                    ? 'bg-pink-50 text-pink-700 border-pink-200' 
-                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                    ? 'bg-brand-green text-white border-brand-green shadow-sm' 
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                 }`}
               >
                 {type}
@@ -88,54 +88,59 @@ export default function SearchPage() {
         {loading ? (
           <div className="text-center py-20">Loading...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProperties.map((property) => (
               <Link key={property.id} to={`/property/${property.id}`} className="group block">
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-200 overflow-hidden h-full flex flex-col">
-                  <div className="relative h-48">
+                <div className="flex flex-col gap-4">
+                  {/* Image Container */}
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100">
                     <img
                       src={property.images[0]}
                       alt={property.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
+                    
                     {property.verification_status === 'verified' && (
-                      <div className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center shadow-sm">
-                        <Shield size={12} className="mr-1" /> Verified
+                      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-brand-green text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-sm font-sans">
+                        <Shield size={12} className="mr-1 fill-brand-green" /> VERIFIED
                       </div>
                     )}
-                    <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded">
+                    <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-lg font-sans border border-white/10">
                       {property.property_type}
                     </div>
                   </div>
                   
-                  <div className="p-4 flex-grow flex flex-col">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{property.title}</h3>
-                      <div className="flex items-center text-yellow-500 text-sm font-bold">
-                        <Star size={14} fill="currentColor" className="mr-1" /> 4.8
+                  {/* Content */}
+                  <div className="flex flex-col gap-1">
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-lg font-serif font-bold text-gray-900 group-hover:text-brand-rust transition line-clamp-1">
+                        {property.title}
+                      </h3>
+                      <div className="flex items-center gap-1 text-gray-900 font-medium text-sm">
+                        <Star size={14} className="fill-brand-yellow text-brand-yellow" />
+                        4.8
                       </div>
                     </div>
                     
-                    <p className="text-sm text-gray-500 flex items-center mb-3">
+                    <p className="text-gray-500 font-sans text-sm flex items-center">
                       <MapPin size={14} className="mr-1" />
                       {property.location}
                     </p>
 
                     {/* Safety Tags */}
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="flex flex-wrap gap-2 my-1">
                       {property.safety_features && property.safety_features.slice(0, 2).map((feature: string) => (
-                        <span key={feature} className="px-2 py-0.5 rounded text-[10px] font-medium bg-rose-50 text-rose-700 border border-rose-100">
+                        <span key={feature} className="text-xs text-brand-green bg-brand-green/5 px-2 py-1 rounded-md font-medium border border-brand-green/10">
                           {feature}
                         </span>
                       ))}
                     </div>
 
-                    <div className="mt-auto pt-3 border-t border-gray-100 flex justify-between items-center">
-                      <div>
-                        <span className="text-lg font-bold text-gray-900">₹{property.price.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500">/{property.rent_cycle === 'Daily' ? 'day' : 'mo'}</span>
-                      </div>
-                      <span className="text-sm font-medium text-pink-600 group-hover:underline">View Details</span>
+                    <div className="mt-1 flex items-baseline gap-1">
+                      <span className="font-serif text-lg font-bold text-gray-900">₹{property.price.toLocaleString()}</span>
+                      <span className="text-gray-500 text-sm font-sans">/{property.rent_cycle === 'Daily' ? 'day' : 'mo'}</span>
+                      <span className="ml-auto text-sm font-medium text-brand-rust group-hover:underline">View Details</span>
                     </div>
                   </div>
                 </div>

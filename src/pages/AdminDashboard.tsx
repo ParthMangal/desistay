@@ -11,12 +11,12 @@ function AdminOverview() {
         <p className="text-3xl font-bold text-orange-600 mt-2">12</p>
       </div>
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-        <h3 className="text-gray-500 text-sm font-medium">Verified Safe Stays</h3>
-        <p className="text-3xl font-bold text-green-600 mt-2">156</p>
+        <h3 className="text-gray-500 text-sm font-medium font-sans">Verified Safe Stays</h3>
+        <p className="text-3xl font-bold text-brand-green mt-2 font-serif">156</p>
       </div>
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-        <h3 className="text-gray-500 text-sm font-medium">Total Revenue</h3>
-        <p className="text-3xl font-bold text-indigo-600 mt-2">₹45,200</p>
+        <h3 className="text-gray-500 text-sm font-medium font-sans">Total Revenue</h3>
+        <p className="text-3xl font-bold text-brand-rust mt-2 font-serif">₹45,200</p>
       </div>
     </div>
   );
@@ -44,13 +44,13 @@ function AdminVerification() {
           <div key={p.id} className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-                <p className="text-gray-500">{p.location}</p>
-                <div className="mt-4 bg-rose-50 p-3 rounded-lg border border-rose-100">
-                  <p className="font-medium text-rose-900 text-sm mb-2">Safety Features Claimed:</p>
+                <h3 className="text-lg font-serif font-semibold text-gray-900">{p.title}</h3>
+                <p className="text-gray-500 font-sans">{p.location}</p>
+                <div className="mt-4 bg-brand-light/30 p-3 rounded-lg border border-brand-green/20">
+                  <p className="font-medium text-brand-green text-sm mb-2 font-sans">Safety Features Claimed:</p>
                   <div className="flex flex-wrap gap-2">
                     {p.safety_features.map((f: string) => (
-                      <span key={f} className="text-xs bg-white border border-rose-200 px-2 py-1 rounded text-rose-700">{f}</span>
+                      <span key={f} className="text-xs bg-white border border-brand-green/20 px-2 py-1 rounded text-brand-green font-sans">{f}</span>
                     ))}
                   </div>
                 </div>
@@ -58,13 +58,13 @@ function AdminVerification() {
               <div className="flex gap-2">
                 <button 
                   onClick={() => handleVerify(p.id, 'verified')}
-                  className="bg-green-600 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-green-700"
+                  className="bg-brand-green text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-brand-green/90 font-sans"
                 >
                   <Check size={16} /> Approve
                 </button>
                 <button 
                   onClick={() => handleVerify(p.id, 'rejected')}
-                  className="bg-red-600 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-red-700"
+                  className="bg-red-600 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-red-700 font-sans"
                 >
                   <X size={16} /> Reject
                 </button>
@@ -184,14 +184,14 @@ function AdminCommission() {
 
 export default function AdminDashboard() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Platform Admin</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
+      <h1 className="text-3xl font-serif font-bold text-gray-900 mb-8">Platform Admin</h1>
       
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="w-full md:w-64 flex-shrink-0">
           <nav className="space-y-1">
-            <Link to="/admin" className="flex items-center px-4 py-2 text-gray-900 bg-gray-100 rounded-md">
-              <Settings className="mr-3 h-5 w-5 text-gray-500" />
+            <Link to="/admin" className="flex items-center px-4 py-2 text-brand-green bg-brand-light/50 rounded-md font-medium">
+              <Settings className="mr-3 h-5 w-5 text-brand-green" />
               Overview
             </Link>
             <Link to="/admin/verification" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-md">

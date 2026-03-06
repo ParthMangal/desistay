@@ -20,18 +20,18 @@ export default function PropertyDetailsPage() {
   if (!property) return <div className="p-8 text-center">Property not found</div>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
       {/* Verification Banner */}
       {property.verification_status === 'verified' ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center text-green-800">
+        <div className="bg-brand-green/10 border border-brand-green/20 rounded-lg p-4 mb-6 flex items-center text-brand-green">
           <Shield className="mr-2" size={20} />
-          <span className="font-semibold">DesiStays Verified Safe:</span>
+          <span className="font-semibold font-serif">FemmeGo Verified Safe:</span>
           <span className="ml-2 text-sm">This property has passed our 15-point safety checklist including police verification and physical inspection.</span>
         </div>
       ) : (
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 flex items-center text-yellow-800">
           <AlertCircle className="mr-2" size={20} />
-          <span className="font-semibold">Verification Pending:</span>
+          <span className="font-semibold font-serif">Verification Pending:</span>
           <span className="ml-2 text-sm">This property is currently under review by our safety team.</span>
         </div>
       )}
@@ -57,26 +57,26 @@ export default function PropertyDetailsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content */}
         <div className="lg:col-span-2">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{property.title}</h1>
-          <div className="flex items-center text-gray-500 mb-6">
+          <h1 className="text-3xl font-serif font-bold text-gray-900 mb-2">{property.title}</h1>
+          <div className="flex items-center text-gray-500 mb-6 font-sans">
             <MapPin size={18} className="mr-1" />
             {property.location}
           </div>
 
           <div className="border-t border-b border-gray-200 py-6 mb-6">
-            <h2 className="text-xl font-semibold mb-4">Hosted by {property.vendor?.name || 'Partner'}</h2>
-            <p className="text-gray-600">{property.description}</p>
+            <h2 className="text-xl font-serif font-semibold mb-4 text-brand-green">Hosted by {property.vendor?.name || 'Partner'}</h2>
+            <p className="text-gray-600 font-sans leading-relaxed">{property.description}</p>
           </div>
 
           {/* Safety Checklist Section */}
-          <div className="mb-8 bg-rose-50 p-6 rounded-xl border border-rose-100">
-            <h2 className="text-xl font-semibold mb-4 text-rose-900 flex items-center">
+          <div className="mb-8 bg-brand-light/30 p-6 rounded-xl border border-brand-green/10">
+            <h2 className="text-xl font-serif font-semibold mb-4 text-brand-green flex items-center">
               <Shield className="mr-2" /> Safety Checklist
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {property.safety_features?.map((feature: string) => (
-                <div key={feature} className="flex items-center text-gray-700">
-                  <Check size={18} className="mr-2 text-rose-600" />
+                <div key={feature} className="flex items-center text-gray-700 font-sans">
+                  <Check size={18} className="mr-2 text-brand-green" />
                   {feature}
                 </div>
               ))}
@@ -108,11 +108,11 @@ export default function PropertyDetailsPage() {
           )}
 
           <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">Amenities</h2>
+            <h2 className="text-xl font-serif font-semibold mb-4 text-brand-green">Amenities</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {property.amenities.map((amenity: string) => (
-                <div key={amenity} className="flex items-center text-gray-600">
-                  <Check size={18} className="mr-2 text-green-500" />
+                <div key={amenity} className="flex items-center text-gray-600 font-sans">
+                  <Check size={18} className="mr-2 text-brand-rust" />
                   {amenity}
                 </div>
               ))}
@@ -120,10 +120,10 @@ export default function PropertyDetailsPage() {
           </div>
 
           <div className="mb-8 border-t border-gray-200 pt-6">
-            <h2 className="text-xl font-semibold mb-4">Cancellation Policy</h2>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="font-medium text-gray-900">{property.cancellation_policy} Policy</p>
-              <p className="text-sm text-gray-600 mt-1">
+            <h2 className="text-xl font-serif font-semibold mb-4 text-brand-green">Cancellation Policy</h2>
+            <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+              <p className="font-medium text-gray-900 font-sans">{property.cancellation_policy} Policy</p>
+              <p className="text-sm text-gray-600 mt-1 font-sans">
                 {property.cancellation_policy === 'Flexible' && 'Full refund 1 day prior to arrival.'}
                 {property.cancellation_policy === 'Moderate' && 'Full refund 5 days prior to arrival.'}
                 {property.cancellation_policy === 'Strict' && '50% refund up to 1 week prior to arrival.'}
@@ -132,29 +132,29 @@ export default function PropertyDetailsPage() {
           </div>
 
           <div className="mb-8 border-t border-gray-200 pt-6">
-            <h2 className="text-xl font-semibold mb-4">Guest Reviews</h2>
+            <h2 className="text-xl font-serif font-semibold mb-4 text-brand-green">Guest Reviews</h2>
             {property.reviews && property.reviews.length > 0 ? (
               <div className="space-y-4">
                 {property.reviews.map((review: any) => (
                   <div key={review.id} className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center">
-                        <div className="bg-gray-200 rounded-full p-2 mr-3">
-                          <User size={16} className="text-gray-600" />
+                        <div className="bg-brand-light rounded-full p-2 mr-3">
+                          <User size={16} className="text-brand-green" />
                         </div>
-                        <span className="font-medium text-gray-900">{review.user_name}</span>
+                        <span className="font-medium text-gray-900 font-sans">{review.user_name}</span>
                       </div>
-                      <div className="flex items-center text-yellow-500">
+                      <div className="flex items-center text-brand-yellow">
                         <Star size={14} fill="currentColor" />
                         <span className="ml-1 text-sm font-medium">{review.rating}</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm">{review.comment}</p>
+                    <p className="text-gray-600 text-sm font-sans italic">"{review.comment}"</p>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No reviews yet.</p>
+              <p className="text-gray-500 font-sans">No reviews yet.</p>
             )}
           </div>
         </div>
@@ -164,34 +164,34 @@ export default function PropertyDetailsPage() {
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 sticky top-24">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <span className="text-2xl font-bold text-gray-900">₹{property.price.toLocaleString()}</span>
-                <span className="text-gray-500"> / {property.rent_cycle === 'Daily' ? 'day' : 'month'}</span>
+                <span className="text-2xl font-bold text-gray-900 font-sans">₹{property.price.toLocaleString()}</span>
+                <span className="text-gray-500 font-sans"> / {property.rent_cycle === 'Daily' ? 'day' : 'month'}</span>
               </div>
-              <div className="flex items-center text-sm text-gray-600">
-                <Star size={16} className="text-yellow-400 mr-1" />
+              <div className="flex items-center text-sm text-gray-600 font-sans">
+                <Star size={16} className="text-brand-yellow mr-1" />
                 <span>4.8 (12 reviews)</span>
               </div>
             </div>
 
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-6 font-sans">
               <div className="flex justify-between text-sm text-gray-600">
                 <span>Security Deposit</span>
                 <span>₹{property.price.toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-600">
                 <span>Brokerage</span>
-                <span className="text-green-600 font-medium">₹0 (Zero)</span>
+                <span className="text-brand-green font-medium">₹0 (Zero)</span>
               </div>
             </div>
 
             <Link 
               to={`/booking/${property.id}`}
-              className="block w-full bg-pink-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-pink-700 transition"
+              className="block w-full bg-brand-rust text-white text-center py-3 rounded-lg font-semibold hover:bg-brand-rust/90 transition shadow-md font-sans"
             >
               Book Now
             </Link>
             
-            <p className="text-center text-xs text-gray-500 mt-4">
+            <p className="text-center text-xs text-gray-500 mt-4 font-sans">
               Pay token amount to reserve
             </p>
           </div>

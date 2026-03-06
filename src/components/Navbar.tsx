@@ -17,7 +17,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-pink-600">DesiStays</span>
+              <span className="text-3xl font-serif font-bold text-brand-green">FemmeGo</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link to="/" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -54,7 +54,7 @@ export default function Navbar() {
                 <Link to="/login" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                   Log in
                 </Link>
-                <Link to="/register" className="bg-pink-600 text-white hover:bg-pink-700 px-4 py-2 rounded-md text-sm font-medium">
+                <Link to="/register" className="bg-brand-rust text-white hover:bg-brand-rust/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
                   Sign up
                 </Link>
               </div>

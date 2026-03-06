@@ -64,18 +64,18 @@ function VendorProperties() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">My Properties</h2>
+        <h2 className="text-2xl font-serif font-bold text-gray-900">My Properties</h2>
         <button 
           onClick={() => setShowAddForm(!showAddForm)}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-indigo-700"
+          className="bg-brand-green text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-brand-green/90 font-sans"
         >
           <Plus size={18} /> Add Property
         </button>
       </div>
 
       {showAddForm && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
-          <h3 className="text-lg font-semibold mb-4">Add New Property</h3>
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8 font-sans">
+          <h3 className="text-lg font-semibold mb-4 text-brand-green">Add New Property</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
@@ -121,8 +121,8 @@ function VendorProperties() {
               onChange={e => setNewProperty({...newProperty, images: e.target.value})}
               required
             />
-            <div className="bg-rose-50 p-4 rounded-lg border border-rose-100">
-              <h4 className="font-semibold text-rose-900 mb-2">Safety Checklist (Required for Verification)</h4>
+            <div className="bg-brand-light/30 p-4 rounded-lg border border-brand-green/20">
+              <h4 className="font-semibold text-brand-green mb-2">Safety Checklist (Required for Verification)</h4>
               <input
                 placeholder="Safety Features (e.g. CCTV, Female Staff, Guard, Secure Locks)"
                 className="border p-2 rounded w-full"
@@ -134,7 +134,7 @@ function VendorProperties() {
             </div>
             <div className="flex justify-end gap-2">
               <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 border rounded hover:bg-gray-50">Cancel</button>
-              <button type="submit" className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Save</button>
+              <button type="submit" className="px-4 py-2 bg-brand-green text-white rounded hover:bg-brand-green/90">Save</button>
             </div>
           </form>
         </div>
@@ -146,13 +146,13 @@ function VendorProperties() {
             <div className="flex gap-4">
               <img src={p.images[0]} className="w-24 h-24 object-cover rounded-md" />
               <div>
-                <h3 className="font-semibold text-lg">{p.title}</h3>
-                <p className="text-gray-500">{p.location}</p>
-                <p className="font-medium text-indigo-600">${p.price_per_night}/night</p>
+                <h3 className="font-serif font-semibold text-lg text-gray-900">{p.title}</h3>
+                <p className="text-gray-500 font-sans">{p.location}</p>
+                <p className="font-medium text-brand-rust font-sans">₹{p.price}/night</p>
               </div>
             </div>
             <div className="flex gap-2">
-              <button className="p-2 text-gray-500 hover:text-indigo-600"><Edit size={18} /></button>
+              <button className="p-2 text-gray-500 hover:text-brand-green"><Edit size={18} /></button>
               <button onClick={() => handleDelete(p.id)} className="p-2 text-gray-500 hover:text-red-600"><Trash size={18} /></button>
             </div>
           </div>
@@ -189,12 +189,12 @@ function VendorEarnings() {
           <p className="text-3xl font-bold text-gray-900 mt-2">{stats.total_bookings}</p>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-gray-500 text-sm font-medium">Total Revenue</h3>
-          <p className="text-3xl font-bold text-green-600 mt-2">₹{stats.total_revenue || 0}</p>
+          <h3 className="text-gray-500 text-sm font-medium font-sans">Total Revenue</h3>
+          <p className="text-3xl font-bold text-brand-green mt-2 font-serif">₹{stats.total_revenue || 0}</p>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-gray-500 text-sm font-medium">Platform Commission (10%)</h3>
-          <p className="text-3xl font-bold text-red-600 mt-2">₹{stats.total_commission || 0}</p>
+          <h3 className="text-gray-500 text-sm font-medium font-sans">Platform Commission (10%)</h3>
+          <p className="text-3xl font-bold text-red-600 mt-2 font-serif">₹{stats.total_commission || 0}</p>
         </div>
       </div>
       
@@ -243,14 +243,14 @@ function VendorKYC() {
 
 export default function VendorDashboard() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Vendor Dashboard</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
+      <h1 className="text-3xl font-serif font-bold text-brand-green mb-8">Vendor Dashboard</h1>
       
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="w-full md:w-64 flex-shrink-0">
           <nav className="space-y-1">
-            <Link to="/vendor" className="flex items-center px-4 py-2 text-gray-900 bg-gray-100 rounded-md">
-              <Calendar className="mr-3 h-5 w-5 text-gray-500" />
+            <Link to="/vendor" className="flex items-center px-4 py-2 text-brand-green bg-brand-light/50 rounded-md font-medium">
+              <Calendar className="mr-3 h-5 w-5 text-brand-green" />
               Properties
             </Link>
             <Link to="/vendor/bookings" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-md">
